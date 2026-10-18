@@ -13,3 +13,11 @@ Firestore collection `habits`: `{name, description, points, completedDates: ["yy
 
 ## TODO for submission
 Screenshots · demo video · vibe-coding walkthrough · repo link
+
+Notion doc (with prompts I used for vibe coding) link:
+https://app.notion.com/p/bhavyaa-habit-tracker-app-submission-with-demo-link-3fce94ef1d8180dab661d4c9e9421f33?source=copy_link
+
+Youtube demo link:
+https://youtu.be/JeybLPJkm0c?si=Ktkfk7j3yGTGZaFT
+
+
