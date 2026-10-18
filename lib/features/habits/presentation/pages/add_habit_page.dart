@@ -23,8 +23,7 @@ const _ideas = [
   'Drink water',
   'Read 20 pages',
   'Walk 30 min',
-  'Stretch',
-  'Meditate'
+  'Meditate',
 ];
 
 class AddHabitPage extends StatefulWidget {

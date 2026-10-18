@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "159502521884",
+    "project_id": "bhavyaa-habit-tracker",
+    "storage_bucket": "bhavyaa-habit-tracker.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159502521884:android:29aa370e89e7dac055b1d9",
+        "android_client_info": {
+          "package_name": "com.example.bhavyaa_habit_tracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmY1T2-mO2zdYGNvaPqf3cWVzqvHMksGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -80,13 +80,13 @@ class HabitDetailPage extends StatelessWidget {
                     ]),
                   )),
               const SizedBox(height: 22),
-              Row(children: const [
+              const Row(children: [
                 Text('LAST 7 DAYS',
                     style: TextStyle(letterSpacing: 2, fontSize: 12)),
                 SizedBox(width: 6),
                 Tooltip(
                     message:
-                        'Each circle is a day. Filled means you finished it.',
+                        'Each circle is a day. Tap one to mark it done or undone.',
                     child: Icon(Icons.info_outline, size: 16, color: C.sage)),
               ]),
               const SizedBox(height: 12),
@@ -101,33 +101,27 @@ class HabitDetailPage extends StatelessWidget {
                       for (var i = 0; i < week.length; i++)
                         Appear(
                             index: i,
-                            child:
-                                _Day(date: week[i].key, done: week[i].value)),
+                            child: _Day(
+                              date: week[i].key,
+                              done: week[i].value,
+                              onTap:
+                                  dayKey(week[i].key) == dayKey(DateTime.now())
+                                      ? () => context
+                                          .read<HabitsCubit>()
+                                          .toggle(h, week[i].key)
+                                      : () {},
+                            )),
                     ]),
               ),
               const SizedBox(height: 10),
               Center(
                   child: Text('$count of 7 days done',
                       style: const TextStyle(color: C.sage))),
-              const SizedBox(height: 90),
+              const SizedBox(height: 6),
+              const Center(
+                  child: Text('Tap a circle to mark that day done or undone',
+                      style: TextStyle(color: C.sage, fontSize: 12))),
             ]),
-            bottomNavigationBar: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
-                child: FilledButton.icon(
-                  style: FilledButton.styleFrom(
-                      backgroundColor: done ? C.sage : C.ink,
-                      padding: const EdgeInsets.all(18)),
-                  onPressed: () => context.read<HabitsCubit>().toggle(h),
-                  icon: Icon(done ? Icons.undo : Icons.check),
-                  label: AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 250),
-                      child: Text(
-                          done ? 'Mark today undone' : 'Mark today done',
-                          key: ValueKey(done))),
-                ),
-              ),
-            ),
           );
         }),
       );
@@ -136,32 +130,42 @@ class HabitDetailPage extends StatelessWidget {
 class _Day extends StatelessWidget {
   final DateTime date;
   final bool done;
-  const _Day({required this.date, required this.done});
+  final VoidCallback onTap;
+  const _Day({required this.date, required this.done, required this.onTap});
+
   @override
   Widget build(BuildContext context) {
     final today = dayKey(date) == dayKey(DateTime.now());
     return Tooltip(
       message:
-          '${_names[date.weekday - 1]} ${date.day}: ${done ? 'done' : 'not done'}',
-      child: Column(children: [
-        AnimatedContainer(
-            duration: const Duration(milliseconds: 400),
-            curve: Curves.easeOutBack,
-            width: 36,
-            height: 36,
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: done ? C.amber : Colors.transparent,
-                border: Border.all(
-                    color: today ? C.ink : C.sage.withValues(alpha: .4),
-                    width: today ? 2 : 1)),
-            child: done ? const Icon(Icons.check, size: 18) : null),
-        const SizedBox(height: 6),
-        Text(today ? 'Today' : _names[date.weekday - 1],
-            style: TextStyle(
-                fontSize: 11,
-                fontWeight: today ? FontWeight.w700 : FontWeight.w400)),
-      ]),
+          '${_names[date.weekday - 1]} ${date.day}: ${done ? 'done, tap to undo' : 'not done'}',
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: onTap,
+        child: Column(children: [
+          AnimatedContainer(
+              duration: const Duration(milliseconds: 350),
+              curve: Curves.easeOutBack,
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: done ? C.amber : Colors.transparent,
+                  border: Border.all(
+                      color: today ? C.ink : C.sage.withValues(alpha: .4),
+                      width: today ? 2 : 1)),
+              child: AnimatedScale(
+                  scale: done ? 1 : 0,
+                  duration: const Duration(milliseconds: 250),
+                  curve: Curves.easeOutBack,
+                  child: const Icon(Icons.check, size: 20, color: C.ink))),
+          const SizedBox(height: 6),
+          Text(today ? 'Today' : _names[date.weekday - 1],
+              style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: today ? FontWeight.w700 : FontWeight.w400)),
+        ]),
+      ),
     );
   }
 }

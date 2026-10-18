@@ -1,1 +1,1 @@
-{"flutter":{"platforms":{"dart":{"lib/firebase_options.dart":{"projectId":"bhavyaa-habit-tracker","configurations":{"web":"1:159502521884:web:0d1a88e894acd2b455b1d9"}}}}}}
+{"flutter":{"platforms":{"dart":{"lib/firebase_options.dart":{"projectId":"bhavyaa-habit-tracker","configurations":{"android":"1:159502521884:android:29aa370e89e7dac055b1d9","web":"1:159502521884:web:0d1a88e894acd2b455b1d9"}}},"android":{"default":{"projectId":"bhavyaa-habit-tracker","appId":"1:159502521884:android:29aa370e89e7dac055b1d9","fileOutput":"android/app/google-services.json"}}}}}

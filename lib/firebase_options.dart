@@ -21,10 +21,7 @@ class DefaultFirebaseOptions {
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for android - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return android;
       case TargetPlatform.iOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for ios - '
@@ -58,6 +55,14 @@ class DefaultFirebaseOptions {
     messagingSenderId: '159502521884',
     projectId: 'bhavyaa-habit-tracker',
     authDomain: 'bhavyaa-habit-tracker.firebaseapp.com',
+    storageBucket: 'bhavyaa-habit-tracker.firebasestorage.app',
+  );
+
+  static const FirebaseOptions android = FirebaseOptions(
+    apiKey: 'AIzaSyCmY1T2-mO2zdYGNvaPqf3cWVzqvHMksGk',
+    appId: '1:159502521884:android:29aa370e89e7dac055b1d9',
+    messagingSenderId: '159502521884',
+    projectId: 'bhavyaa-habit-tracker',
     storageBucket: 'bhavyaa-habit-tracker.firebasestorage.app',
   );
 }
