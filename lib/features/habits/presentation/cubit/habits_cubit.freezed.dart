@@ -96,8 +96,6 @@ extension HabitsStatePatterns on HabitsState {
         return loaded(_that);
       case _Error():
         return error(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -191,8 +189,6 @@ extension HabitsStatePatterns on HabitsState {
         return loaded(_that.habits);
       case _Error():
         return error(_that.message);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -230,8 +226,8 @@ extension HabitsStatePatterns on HabitsState {
 
 /// @nodoc
 
-class _Loading implements HabitsState {
-  const _Loading();
+class _Loading extends HabitsState {
+  const _Loading() : super._();
 
   @override
   bool operator ==(Object other) {
@@ -250,8 +246,10 @@ class _Loading implements HabitsState {
 
 /// @nodoc
 
-class _Loaded implements HabitsState {
-  const _Loaded(List<Habit> habits) : _habits = habits;
+class _Loaded extends HabitsState {
+  const _Loaded(List<Habit> habits)
+      : _habits = habits,
+        super._();
 
   final List<Habit> _habits;
   List<Habit> get habits {
@@ -320,8 +318,8 @@ class __$LoadedCopyWithImpl<$Res> implements _$LoadedCopyWith<$Res> {
 
 /// @nodoc
 
-class _Error implements HabitsState {
-  const _Error(this.message);
+class _Error extends HabitsState {
+  const _Error(this.message) : super._();
 
   final String message;
 

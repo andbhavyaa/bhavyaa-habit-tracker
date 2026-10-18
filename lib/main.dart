@@ -8,6 +8,7 @@ import 'core/theme.dart';
 import 'features/habits/presentation/cubit/habits_cubit.dart';
 import 'features/habits/presentation/pages/add_habit_page.dart';
 import 'features/habits/presentation/pages/habit_detail_page.dart';
+import 'features/habits/presentation/pages/settings_page.dart';
 import 'features/habits/presentation/pages/today_page.dart';
 import 'injection.dart';
 
@@ -30,6 +31,8 @@ final _router = GoRouter(routes: [
       path: '/habit/:id',
       pageBuilder: (_, s) =>
           _fade(s, HabitDetailPage(id: s.pathParameters['id']!))),
+  GoRoute(
+      path: '/settings', pageBuilder: (_, s) => _fade(s, const SettingsPage())),
 ]);
 
 Future<void> main() async {

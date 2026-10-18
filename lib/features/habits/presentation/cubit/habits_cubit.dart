@@ -9,10 +9,21 @@ import '../../domain/usecases/usecases.dart';
 part 'habits_cubit.freezed.dart';
 
 @freezed
-class HabitsState with _$HabitsState {
+sealed class HabitsState with _$HabitsState {
+  const HabitsState._();
   const factory HabitsState.loading() = _Loading;
   const factory HabitsState.loaded(List<Habit> habits) = _Loaded;
   const factory HabitsState.error(String message) = _Error;
+
+  bool get isLoading => this is _Loading;
+  String? get errorMessage => switch (this) {
+        _Error(:final message) => message,
+        _ => null,
+      };
+  List<Habit>? get habitsOrNull => switch (this) {
+        _Loaded(:final habits) => habits,
+        _ => null,
+      };
 }
 
 class HabitsCubit extends Cubit<HabitsState> {

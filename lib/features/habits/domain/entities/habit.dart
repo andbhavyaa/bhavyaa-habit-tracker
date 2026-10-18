@@ -25,4 +25,16 @@ abstract class Habit with _$Habit {
       return MapEntry(d, doneOn(d));
     });
   }
+
+  /// Consecutive days done, counting back from today (or yesterday if today isn't done yet).
+  int get streak {
+    var d = DateTime.now();
+    if (!doneOn(d)) d = DateTime(d.year, d.month, d.day - 1);
+    var n = 0;
+    while (doneOn(d)) {
+      n++;
+      d = DateTime(d.year, d.month, d.day - 1);
+    }
+    return n;
+  }
 }
