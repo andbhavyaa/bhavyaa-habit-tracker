@@ -20,4 +20,7 @@ https://app.notion.com/p/bhavyaa-habit-tracker-app-submission-with-demo-link-3fc
 Youtube demo link:
 https://youtu.be/JeybLPJkm0c?si=Ktkfk7j3yGTGZaFT
 
+Project Overview Report:
+https://app.notion.com/p/bhavyaa-habit-tracker-app-project-overview-submission-3fee94ef1d8180c79b77c798970fe1dd?source=copy_link 
+
 
